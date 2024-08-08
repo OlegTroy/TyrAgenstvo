@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <title>Результати пошуку</title>
+
+</head>
+
+
+<body>
+    <header>
+        <form action="/dosearch/" method="GET">
+            <input type="text" name="s" placeholder="пошук" value="{{ query }}">
+            <button type="submit">пошук</button>
+        </form>
+    </header>
+
+<div class="text-container">
+
+
+
+    <h1>Результати пошуку {{ query }}</h1>
+    <ul>
+        {% for id, tour in results.items() %}
+            <li>
+                <a href="{{ url_for('tour', id=id) }}">{{ tour['title'] }}</a> - {{ tour['description'] }}
+            </li>
+        {% else %}
+            <li>Не знайдено жодної оренди.</li>
+        {% endfor %}
+</ul>
+</div>
+
+</body>
+</html>

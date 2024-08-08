@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleposhuk.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <div class="nav-links">
+                {% if cookie %}
+                    <a href="/logout/" class="logout-button">Вийти</a>
+                {% else %}
+                    <a href="/login/">Увійти</a>
+                    <a href="/register/">Реєстрація</a>
+                {% endif %}
+            </div>
+            <form action="/dosearch/" method="GET" class="search-form">
+                <input type="text" name="s" placeholder="Пошук на сайті" class="search-input">
+                <button type="submit" class="search-button">Пошук</button>
+            </form>
+        </nav>
+    </header>
+    <main>
+        {% extends 'base.html' %}
+        {% block title %} RentHouse{% endblock %}
+
+        {% block main %}
+        <main class="container mt-3">
+            <p class="card-title text-center">Ласкаво просимо, {{ cookie }}!</p>
+            <!-- HERO -->
+            <section class="jumbotron text-center mt-4" style="background: url('https://kartinki.pics/uploads/posts/2022-07/1657688511_17-kartinkin-net-p-kartinki-bolshoi-dom-17.jpg'); background-position: center center">
+              <h1 class="display-4 text-light">RentHouse - оренда житла</h1>
+              <p class="lead text-light">{{subtitle}}</p>
+              <p class="mt-0 w-10 mx-auto text-light"> {{ description }}</p>
+            </section>
+            <!-- CARDS -->
+            <div class="row mt-5">
+              {% for id in range(1,7) %}
+              <div class="col-4">
+                <div class="card mb-4">
+                  <div class="embed-responsive embed-responsive-16by9">
+                     <img class="card-img-top embed-responsive-item" src="{{tours[id]['picture']}}" alt="" />
+                  </div>
+                  <div class="card-body">
+                    <h2 class="h5 card-title">{{tours[id]['title']}}</h2>
+                    <p class="card-text">{{tours[id]['description']|truncate(50)}}</p>
+                    <a href="/tour/{{id}}/" class="btn btn-sm btn-primary">Деталі оренди</a>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </main>
+        {% endblock %}
+    </main>
+</body>
+</html>
+

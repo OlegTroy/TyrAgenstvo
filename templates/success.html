@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Успіх!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleforsuccess.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Дякуємо за покупку!</h1>
+        <a href="{{ url_for('main') }}" class="btn btn-primary">Повернутися на головну</a>
+    </div>
+</body>
+</html>

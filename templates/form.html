@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пошук</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="no-select">
+
+
+    <header>
+        <form action="/dosearch/" method="GET" class="search-form">
+            <input type="text" name="s" placeholder="пошук" class="search-input">
+            <button type="submit" class="search-button">пошук</button>
+        </form>
+        {% if cookie %}
+            <a href="/logout/">Вийти</a>
+        {% else %}
+            <a href="/login/">Увійти</a>
+            <a href="/register/">Реєстрація</a>
+        {% endif %}
+    </header>
+</div>
+</body>
+</html>

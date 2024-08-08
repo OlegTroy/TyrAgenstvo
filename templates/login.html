@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизація</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+
+    </header>
+    <div class="main-content">
+        <form action="/login/" method="POST" class="auth-form">
+            <h2>Авторизація</h2>
+            <label for="username">Ім'я користувача:</label><br>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Пароль:</label><br>
+            <input type="password" id="password" name="password" required><br>
+            <button type="submit">Увійти</button>
+            {% if error %}
+                <p class="error">Не вдалося знайти користувача</p>
+            {% endif %}
+            <p>Ще не маєте облікового запису? <a href="/register">Зареєструйтеся</a></p>
+        </form>
+    </div>
+</body>
+</html>

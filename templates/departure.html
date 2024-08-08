@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} RentTours{% endblock %}
+
+{% set from = departures[departure] %}
+{% set sorted_by_price = tours.values()|sort(attribute='price') %}
+{% set sorted_by_nights = tours.values()|sort(attribute='nights') %}
+
+{% block main %}
+  <main class="container mt-3">
+    <h1 class="display-5 mt-4">Будинки {{from}}</h1>
+    <p class="mb-4">Знайдено {{ tours|length }} будинки від {{  (sorted_by_price|first).price  }} до {{ (sorted_by_price|last).price }}</p>
+    <!-- CARDS -->
+    <div class="row mt-5">
+      {% for id, tour in tours.items() %}
+      <div class="col-4">
+        <div class="card mb-4">
+          <img src="{{tour.picture}}" class="card-img-top img-fluid" alt="">
+          <div class="card-body">
+            <h2 class="h5 card-title">{{tour.title}}</h2>
+            <p class="card-text">{{tour.description}}</p>
+            <a href="/tour/{{id}}" class="btn btn-sm btn-primary">Деталі оренди</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+{% endblock %}

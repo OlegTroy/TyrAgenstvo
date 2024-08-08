@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styleforbuytur.css') }}">
+    <title>Купівля Туру</title>
+</head>
+<body>
+<form action="{{ url_for('buy_tour') }}" method="post">
+    <div class="form-group">
+        <label for="name">Ім'я:</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="surname">По батькові:</label>
+        <input type="text" class="form-control" id="surname" name="surname" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Електронна пошта:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="phone">Номер телефону:</label>
+        <input type="tel" class="form-control" id="phone" name="phone" required>
+    </div>
+    <div class="form-group">
+        <label for="city">Виберіть місто:</label>
+        <select class="form-control" id="city" name="city" required>
+            <option value="">Оберіть місто</option>
+            <option value="kyiv">Київ</option>
+            <option value="lviv">Львів</option>
+            <option value="odesa">Одеса</option>
+            <option value="kharkiv">Харків</option>
+            <option value="dnipro">Дніпро</option>
+            <option value="cherkasy">Черкаси</option>
+            <option value="chernihiv">Чернігів</option>
+            <option value="chernivtsi">Чернівці</option>
+            <option value="ivano-frankivsk">Івано-Франківськ</option>
+            <option value="kherson">Херсон</option>
+            <option value="khmelnytskyi">Хмельницький</option>
+            <option value="kropyvnytskyi">Кропивницький</option>
+            <option value="lutsk">Луцьк</option>
+            <option value="poltava">Полтава</option>
+            <option value="rivne">Рівне</option>
+            <option value="sumy">Суми</option>
+            <option value="ternopil">Тернопіль</option>
+            <option value="uzhhorod">Ужгород</option>
+            <option value="vinnytsia">Вінниця</option>
+            <option value="zaporizhzhia">Запоріжжя</option>
+            <option value="zhytomyr">Житомир</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="postal_code">Поштовий індекс:</label>
+        <input type="text" class="form-control" id="postal_code" name="postal_code" maxlength="5" pattern="\d{5}" required>
+    </div>
+    <input type="hidden" name="tour_id" value="1">
+    <button type="submit" class="btn btn-primary">Орендувати</button>
+</form>
+
+<script>
+document.getElementById('postal_code').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/, '');
+    if (this.value.length > 5) {
+        this.value = this.value.slice(0, 5);
+    }
+});
+</script>
+
+</body>
+</html>
